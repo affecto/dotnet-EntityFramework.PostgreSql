@@ -7,6 +7,6 @@
     <description>$description$</description>
     <projectUrl>https://github.com/affecto/dotnet-EntityFramework.PostgreSql</projectUrl>
     <tags>affecto entityframework entity framework postgre sql postgresql postgres npgsql schema configuration migration convention history context</tags>
-    <releaseNotes>Moved to GitHub.</releaseNotes>
+    <releaseNotes>Added configuration templates.</releaseNotes>
   </metadata>
 </package>
