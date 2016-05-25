@@ -68,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomHistoryContext.cs" />
-    <Compile Include="HistoryContextDbMigrationsConfiguration.cs" />
+    <Compile Include="PostgreSqlDbMigrationsConfiguration.cs" />
     <Compile Include="IPostgreSqlConfiguration.cs" />
     <Compile Include="IPostgreSqlSchemas.cs" />
     <Compile Include="LowerCasePropertyNameConvention.cs" />

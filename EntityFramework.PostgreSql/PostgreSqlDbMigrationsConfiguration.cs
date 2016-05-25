@@ -3,10 +3,11 @@ using System.Data.Entity.Migrations;
 
 namespace Affecto.EntityFramework.PostgreSql
 {
-    public abstract class HistoryContextDbMigrationsConfiguration<TContext> : DbMigrationsConfiguration<TContext> where TContext : DbContext
+    public abstract class PostgreSqlDbMigrationsConfiguration<TContext> : DbMigrationsConfiguration<TContext> where TContext : DbContext
     {
-        protected HistoryContextDbMigrationsConfiguration(string schemaName)
+        protected PostgreSqlDbMigrationsConfiguration(string schemaName)
         {
+            AutomaticMigrationsEnabled = false;
             SetHistoryContextFactory("Npgsql", (connection, defaultSchema) => new CustomHistoryContext(connection, schemaName));
         }
     }
