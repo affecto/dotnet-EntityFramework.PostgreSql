@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Affecto.EntityFramework.PostgreSql.Configuration;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Affecto.EntityFramework.PostgreSql.Tests
 {

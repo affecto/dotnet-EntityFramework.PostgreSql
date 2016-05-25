@@ -1,7 +1,7 @@
 using System.Configuration;
 using Affecto.Configuration.Extensions;
 
-namespace Affecto.EntityFramework.PostgreSql
+namespace Affecto.EntityFramework.PostgreSql.Configuration
 {
     public class PostgreSqlConfiguration : ConfigurationSection, IPostgreSqlConfiguration
     {
