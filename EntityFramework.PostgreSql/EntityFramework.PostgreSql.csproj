@@ -68,7 +68,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomHistoryContext.cs" />
-    <Compile Include="HistoryContextConfiguration.cs" />
     <Compile Include="HistoryContextDbMigrationsConfiguration.cs" />
     <Compile Include="IPostgreSqlConfiguration.cs" />
     <Compile Include="IPostgreSqlSchemas.cs" />
