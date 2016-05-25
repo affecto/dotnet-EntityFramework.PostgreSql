@@ -73,6 +73,7 @@
     <Compile Include="IPostgreSqlConfiguration.cs" />
     <Compile Include="IPostgreSqlSchemas.cs" />
     <Compile Include="LowerCasePropertyNameConvention.cs" />
+    <Compile Include="PostgreSqlDbContext.cs" />
     <Compile Include="PostgreSqlDbMigration.cs" />
     <Compile Include="PostgreSqlConfiguration.cs" />
     <Compile Include="PostgreSqlSchemaConfiguration.cs" />
