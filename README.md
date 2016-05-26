@@ -10,9 +10,27 @@ Config path configuration/postgreSql/schemas contains a collection of schema ele
 Configured schemas can be accessed using the interface IPostgreSqlSchemas.
 
 The following changes need to be made to the normal EF inheritance hierarchies:
-* When creating a DB context class, inherit from PostgreSqlDbContext instead of DbContext which will set the default schema and conditionally also use a lower case property names convention which is typical in PostgreSql databases.
-* When configuring to use DB migrations, inherit from PostgreSqlDbMigrationsConfiguration instead of DbMigrationsConfiguration.
-* When creating DB migrations, inherit from PostgreSqlDbMigration instead of DbMigration. The class forces you to explicitly define the schema and uses the schema in all DbMigration class methods.
+* When creating a DB context class, inherit from PostgreSqlDbContext instead of DbContext which will set the default schema and conditionally also use a lower case property names convention which is typical in PostgreSql databases. Remember to call the base class method when overriding OnModelCreating to use the given schema and naming conventions.
+* When configuring to use DB migrations, inherit from PostgreSqlDbMigrationsConfiguration instead of DbMigrationsConfiguration. E.g.:
+```c#
+    internal sealed class Configuration : PostgreSqlDbMigrationsConfiguration<StoreContext>
+    {
+        public Configuration()
+            : base(PostgreSqlConfiguration.Settings.Schemas["organizationregister"])
+        {
+        }
+    }
+```
+* When creating DB migrations, inherit from PostgreSqlDbMigration instead of DbMigration. The class forces you to explicitly define the schema and uses the schema in all DbMigration class methods. You can also create your own migration base class where the schema is defined once for all migrations and inherit the concrete migrations from that. E.g.:
+```c#
+    public abstract class OrganizationRegisterDbMigration : PostgreSqlDbMigration
+    {
+        protected override string ResolveSchemaName()
+        {
+            return PostgreSqlConfiguration.Settings.Schemas["organizationregister"];
+        }
+    }
+```
 
 Do not use the EF database initializer to automatically migrate the database to the latest version.
 Also do not enable the creation of automatic migrations.
