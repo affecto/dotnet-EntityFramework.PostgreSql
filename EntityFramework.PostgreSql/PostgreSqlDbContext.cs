@@ -1,21 +1,55 @@
 ﻿using System;
+using System.Data.Common;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
+using System.Data.Entity.Infrastructure;
 
 namespace Affecto.EntityFramework.PostgreSql
 {
     public abstract class PostgreSqlDbContext : DbContext
     {
-        private readonly string defaultSchema;
-        private readonly bool useLowerCasePropertyNames;
+        private string defaultSchema;
+        private bool useLowerCasePropertyNames;
 
         protected PostgreSqlDbContext(string defaultSchema, bool useLowerCasePropertyNames)
         {
-            if (string.IsNullOrWhiteSpace(defaultSchema))
-            {
-                throw new ArgumentNullException("defaultSchema");
-            }
-            this.defaultSchema = defaultSchema;
-            this.useLowerCasePropertyNames = useLowerCasePropertyNames;
+            SetInstanceVariables(defaultSchema, useLowerCasePropertyNames);
+        }
+
+        protected PostgreSqlDbContext(string defaultSchema, bool useLowerCasePropertyNames, DbCompiledModel model)
+            : base(model)
+        {
+            SetInstanceVariables(defaultSchema, useLowerCasePropertyNames);
+        }
+
+        protected PostgreSqlDbContext(string defaultSchema, bool useLowerCasePropertyNames, string nameOrConnectionString)
+            : base(nameOrConnectionString)
+        {
+            SetInstanceVariables(defaultSchema, useLowerCasePropertyNames);
+        }
+
+        protected PostgreSqlDbContext(string defaultSchema, bool useLowerCasePropertyNames, string nameOrConnectionString, DbCompiledModel model)
+            : base(nameOrConnectionString, model)
+        {
+            SetInstanceVariables(defaultSchema, useLowerCasePropertyNames);
+        }
+
+        protected PostgreSqlDbContext(string defaultSchema, bool useLowerCasePropertyNames, DbConnection existingConnection, bool contextOwnsConnection)
+            : base(existingConnection, contextOwnsConnection)
+        {
+            SetInstanceVariables(defaultSchema, useLowerCasePropertyNames);
+        }
+
+        protected PostgreSqlDbContext(string defaultSchema, bool useLowerCasePropertyNames, DbConnection existingConnection, DbCompiledModel model, bool contextOwnsConnection)
+            : base(existingConnection, model, contextOwnsConnection)
+        {
+            SetInstanceVariables(defaultSchema, useLowerCasePropertyNames);
+        }
+
+        protected PostgreSqlDbContext(string defaultSchema, bool useLowerCasePropertyNames, ObjectContext objectContext, bool dbContextOwnsObjectContext)
+            : base(objectContext, dbContextOwnsObjectContext)
+        {
+            SetInstanceVariables(defaultSchema, useLowerCasePropertyNames);
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -37,6 +71,16 @@ namespace Affecto.EntityFramework.PostgreSql
                     configuration.HasColumnName(name);
                 });
             }
+        }
+
+        private void SetInstanceVariables(string defaultSchema, bool useLowerCasePropertyNames)
+        {
+            if (string.IsNullOrWhiteSpace(defaultSchema))
+            {
+                throw new ArgumentNullException("defaultSchema");
+            }
+            this.defaultSchema = defaultSchema;
+            this.useLowerCasePropertyNames = useLowerCasePropertyNames;
         }
     }
 }
