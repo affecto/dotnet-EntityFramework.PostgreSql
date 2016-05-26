@@ -15,4 +15,7 @@
       Moved configuration classes to separate namespace.
     </releaseNotes>
   </metadata>
+  <files>
+    <file src="*.config.transform" target="content"/>
+  </files>
 </package>
