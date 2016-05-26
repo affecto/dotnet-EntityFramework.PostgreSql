@@ -32,6 +32,35 @@ The following changes need to be made to the normal EF inheritance hierarchies:
     }
 ```
 
+When you create new migrations, foreign keys are often created in such a way that doesn't work with PostgreSql.
+A working foreign key needs to be created separately from the table creation, unlike the primary key. E.g.
+```c#
+    CreateTable(
+        "address",
+        c => new
+            {
+                id = c.Guid(nullable: false),
+                postalcode = c.String(),
+                postofficebox = c.String(),
+            })
+        .PrimaryKey(t => t.id);
+            
+    CreateTable(
+        "addresslanguagespecification",
+        c => new
+            {
+                addressid = c.Guid(nullable: false),
+                languageid = c.Guid(nullable: false),
+                streetaddress = c.String(),
+                postaldistrict = c.String(),
+                qualifier = c.String(),
+            })
+        .PrimaryKey(t => new { t.addressid, t.languageid })
+        .Index(t => t.addressid)
+        .Index(t => t.languageid);
+    AddForeignKey("addresslanguagespecification", "addressid", "address", "id");
+```
+
 Do not use the EF database initializer to automatically migrate the database to the latest version.
 Also do not enable the creation of automatic migrations.
 Instead you need to use EF's migrate.exe during deployment to update the database to the latest version.
