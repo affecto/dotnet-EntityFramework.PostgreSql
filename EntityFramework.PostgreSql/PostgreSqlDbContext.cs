@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data.Common;
+﻿using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
@@ -75,10 +74,6 @@ namespace Affecto.EntityFramework.PostgreSql
 
         private void SetInstanceVariables(string defaultSchema, bool useLowerCasePropertyNames)
         {
-            if (string.IsNullOrWhiteSpace(defaultSchema))
-            {
-                throw new ArgumentNullException("defaultSchema");
-            }
             this.defaultSchema = defaultSchema;
             this.useLowerCasePropertyNames = useLowerCasePropertyNames;
         }
