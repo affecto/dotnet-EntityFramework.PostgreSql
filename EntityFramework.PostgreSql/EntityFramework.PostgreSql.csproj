@@ -68,22 +68,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CustomHistoryContext.cs" />
-    <Compile Include="HistoryContextConfiguration.cs" />
-    <Compile Include="HistoryContextDbMigrationsConfiguration.cs" />
-    <Compile Include="IPostgreSqlConfiguration.cs" />
-    <Compile Include="IPostgreSqlSchemas.cs" />
+    <Compile Include="PostgreSqlDbMigrationsConfiguration.cs" />
+    <Compile Include="Configuration\IPostgreSqlConfiguration.cs" />
+    <Compile Include="Configuration\IPostgreSqlSchemas.cs" />
     <Compile Include="LowerCasePropertyNameConvention.cs" />
+    <Compile Include="PostgreSqlDbContext.cs" />
     <Compile Include="PostgreSqlDbMigration.cs" />
-    <Compile Include="PostgreSqlConfiguration.cs" />
-    <Compile Include="PostgreSqlSchemaConfiguration.cs" />
-    <Compile Include="PostgreSqlSchemaConfigurationElement.cs" />
+    <Compile Include="Configuration\PostgreSqlConfiguration.cs" />
+    <Compile Include="Configuration\PostgreSqlSchemaConfiguration.cs" />
+    <Compile Include="Configuration\PostgreSqlSchemaConfigurationElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config.transform" />
     <None Include="EntityFramework.PostgreSql.nuspec">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="web.config.transform" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
