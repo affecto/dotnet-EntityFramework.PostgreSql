@@ -1,4 +1,4 @@
-namespace Affecto.EntityFramework.PostgreSql
+namespace Affecto.EntityFramework.PostgreSql.Configuration
 {
     public interface IPostgreSqlSchemas
     {

@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using Affecto.Configuration.Extensions;
 
-namespace Affecto.EntityFramework.PostgreSql
+namespace Affecto.EntityFramework.PostgreSql.Configuration
 {
     public class PostgreSqlSchemaConfiguration : IPostgreSqlSchemas
     {
